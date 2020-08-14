@@ -11,6 +11,13 @@
 |
 */
 
+/*
 Route::get('/', function () {
     return view('welcome');
 });
+ */
+
+// '/'というURLのときはTaskControllerのindexアクションを実行する
+Route::get('/', 'TasksController@index');
+
+Route::resource('tasks', 'TasksController');
