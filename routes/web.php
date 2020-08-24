@@ -20,7 +20,9 @@ Route::get('/', function () {
 // '/'というURLのときはTaskControllerのindexアクションを実行する
 Route::get('/', 'TasksController@index');
 
-Route::resource('tasks', 'TasksController');
+Route::group(['middleware' => ['auth']], function (){
+    Route::resource('tasks', 'TasksController', ['only' => ['store', 'create', 'show', 'update', 'destroy', 'edit']]);
+});
 
 // ユーザー登録
 Route::get('signup', 'Auth\RegisterController@showRegistrationForm')->name('signup.get');
